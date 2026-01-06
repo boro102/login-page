@@ -1,14 +1,32 @@
 body {
     font-family:'Times New Roman', Times, serif;
     background-color: #f5f5f5;
+    background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
 }
 
 .login-container {
     width: 300px;
+    line-height: 1.6;
     margin: 100px auto;
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background-color: #fafafa;
+    box-shadow: 0 4 15px rgba(0, 0, 0, 0.15);
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #00796b;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
 }
