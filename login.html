@@ -1,23 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sign in</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <main class="login-wrapper" aria-label="Sign in">
+    <div class="login-card" role="region" aria-labelledby="sign-in-heading">
+      <h1 id="sign-in-heading">Welcome back</h1>
+      <p class="lead">Sign in to continue to your account</p>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="/submit-login" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" autocomplete="off" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" autocomplete="off" required>
-            <button type="submit" value="Login">Login</button>
-        </form>
+      <form id="loginForm" action="/submit-login" method="POST" novalidate>
+        <div class="form-group">
+          <label for="username">Email or username</label>
+          <input type="text" id="username" name="username" autocomplete="username" required>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="password">Password</label>
+            <button type="button" class="pass-toggle" id="togglePassword" aria-pressed="false" aria-label="Show password">Show</button>
+          </div>
+          <input type="password" id="password" name="password" autocomplete="current-password" minlength="6" required>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox" name="remember" id="remember">
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot">Forgot?</a>
+        </div>
+
+        <button type="submit" class="primary">Sign in</button>
+      </form>
+
+      <p class="signup">Don't have an account? <a href="#">Sign up</a></p>
     </div>
-    
+  </main>
+
+  <script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function(){
+      const pwd = document.getElementById('password');
+      const isHidden = pwd.type === 'password';
+      pwd.type = isHidden ? 'text' : 'password';
+      this.textContent = isHidden ? 'Hide' : 'Show';
+      this.setAttribute('aria-pressed', String(!isHidden));
+    });
+
+    // Basic client-side demo submission
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      if(!username || !password){
+        alert('Please fill in your username and password.');
+        return;
+      }
+      // Demo behavior only — replace with real auth endpoint in production
+      alert('Login submitted (demo).\nUsername: ' + username);
+    });
+  </script>
 </body>
 </html>
